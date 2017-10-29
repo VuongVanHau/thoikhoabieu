@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.6
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoAn1", "DoAn1\DoAn1.csproj", "{58101273-C7E9-4B77-969C-0D0C364E0293}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{3B9310B8-0305-4A3F-ABC8-52915FD35399}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BAL", "BAL\BAL.csproj", "{563DEEF8-5B61-47DD-A2CA-23864C494DB5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{58101273-C7E9-4B77-969C-0D0C364E0293}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58101273-C7E9-4B77-969C-0D0C364E0293}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58101273-C7E9-4B77-969C-0D0C364E0293}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58101273-C7E9-4B77-969C-0D0C364E0293}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B9310B8-0305-4A3F-ABC8-52915FD35399}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B9310B8-0305-4A3F-ABC8-52915FD35399}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B9310B8-0305-4A3F-ABC8-52915FD35399}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B9310B8-0305-4A3F-ABC8-52915FD35399}.Release|Any CPU.Build.0 = Release|Any CPU
+		{563DEEF8-5B61-47DD-A2CA-23864C494DB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{563DEEF8-5B61-47DD-A2CA-23864C494DB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{563DEEF8-5B61-47DD-A2CA-23864C494DB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{563DEEF8-5B61-47DD-A2CA-23864C494DB5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
