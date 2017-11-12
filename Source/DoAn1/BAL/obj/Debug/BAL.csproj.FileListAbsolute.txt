@@ -1,0 +1,7 @@
+F:\ACE\HCMUTE_K15\DOAN1\DoAn1\BAL\bin\Debug\BAL.dll
+F:\ACE\HCMUTE_K15\DOAN1\DoAn1\BAL\bin\Debug\BAL.pdb
+F:\ACE\HCMUTE_K15\DOAN1\DoAn1\BAL\bin\Debug\DAL.dll
+F:\ACE\HCMUTE_K15\DOAN1\DoAn1\BAL\bin\Debug\DAL.pdb
+F:\ACE\HCMUTE_K15\DOAN1\DoAn1\BAL\obj\Debug\BAL.csprojResolveAssemblyReference.cache
+F:\ACE\HCMUTE_K15\DOAN1\DoAn1\BAL\obj\Debug\BAL.dll
+F:\ACE\HCMUTE_K15\DOAN1\DoAn1\BAL\obj\Debug\BAL.pdb

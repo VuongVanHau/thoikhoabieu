@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="XepThoiKhoaBieuModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Ban">
+    <Key>
+      <PropertyRef Name="MaBan" />
+    </Key>
+    <Property Name="MaBan" Type="Int32" Nullable="false" />
+    <Property Name="TenBan" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Lops" Relationship="Self.FK__Lop__MaBan__1B0907CE" FromRole="Ban" ToRole="Lop" />
+  </EntityType>
+  <EntityType Name="BoMon">
+    <Key>
+      <PropertyRef Name="MaBM" />
+    </Key>
+    <Property Name="MaBM" Type="Int32" Nullable="false" />
+    <Property Name="TenBM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="GiaoViens" Relationship="Self.FK__GiaoVien__MaBM__164452B1" FromRole="BoMon" ToRole="GiaoVien" />
+  </EntityType>
+  <EntityType Name="GiaoVien">
+    <Key>
+      <PropertyRef Name="MaGV" />
+    </Key>
+    <Property Name="MaGV" Type="Int32" Nullable="false" />
+    <Property Name="TenGV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GioiTinh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="SDT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ChucVu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MaBM" Type="Int32" />
+    <NavigationProperty Name="BoMon" Relationship="Self.FK__GiaoVien__MaBM__164452B1" FromRole="GiaoVien" ToRole="BoMon" />
+    <NavigationProperty Name="ThoiKhoaBieux" Relationship="XepThoiKhoaBieuModel.FK_ThoiKhoaBieu_GiaoVien" FromRole="GiaoVien" ToRole="ThoiKhoaBieu" />
+  </EntityType>
+  <EntityType Name="Lop">
+    <Key>
+      <PropertyRef Name="MaLop" />
+    </Key>
+    <Property Name="MaLop" Type="Int32" Nullable="false" />
+    <Property Name="TenLop" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="SoHocSinh" Type="Int32" />
+    <Property Name="MaBan" Type="Int32" />
+    <NavigationProperty Name="Ban" Relationship="Self.FK__Lop__MaBan__1B0907CE" FromRole="Lop" ToRole="Ban" />
+    <NavigationProperty Name="ThoiKhoaBieux" Relationship="XepThoiKhoaBieuModel.FK_ThoiKhoaBieu_Lop" FromRole="Lop" ToRole="ThoiKhoaBieu" />
+  </EntityType>
+  <EntityType Name="MonHoc">
+    <Key>
+      <PropertyRef Name="MaMH" />
+    </Key>
+    <Property Name="MaMH" Type="Int32" Nullable="false" />
+    <Property Name="TenMH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ThoiKhoaBieux" Relationship="XepThoiKhoaBieuModel.FK_ThoiKhoaBieu_MonHoc" FromRole="MonHoc" ToRole="ThoiKhoaBieu" />
+  </EntityType>
+  <EntityType Name="PhongHoc">
+    <Key>
+      <PropertyRef Name="MaPH" />
+    </Key>
+    <Property Name="MaPH" Type="Int32" Nullable="false" />
+    <Property Name="TenPH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DungLuong" Type="Int32" />
+    <NavigationProperty Name="ThoiKhoaBieux" Relationship="XepThoiKhoaBieuModel.FK_ThoiKhoaBieu_PhongHoc" FromRole="PhongHoc" ToRole="ThoiKhoaBieu" />
+  </EntityType>
+  <Association Name="FK__Lop__MaBan__1B0907CE">
+    <End Role="Ban" Type="Self.Ban" Multiplicity="0..1" />
+    <End Role="Lop" Type="Self.Lop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ban">
+        <PropertyRef Name="MaBan" />
+      </Principal>
+      <Dependent Role="Lop">
+        <PropertyRef Name="MaBan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GiaoVien__MaBM__164452B1">
+    <End Role="BoMon" Type="Self.BoMon" Multiplicity="0..1" />
+    <End Role="GiaoVien" Type="Self.GiaoVien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BoMon">
+        <PropertyRef Name="MaBM" />
+      </Principal>
+      <Dependent Role="GiaoVien">
+        <PropertyRef Name="MaBM" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="XepThoiKhoaBieuEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Bans" EntityType="Self.Ban" />
+    <EntitySet Name="BoMons" EntityType="Self.BoMon" />
+    <EntitySet Name="GiaoViens" EntityType="Self.GiaoVien" />
+    <EntitySet Name="Lops" EntityType="Self.Lop" />
+    <EntitySet Name="MonHocs" EntityType="Self.MonHoc" />
+    <EntitySet Name="PhongHocs" EntityType="Self.PhongHoc" />
+    <AssociationSet Name="FK__Lop__MaBan__1B0907CE" Association="Self.FK__Lop__MaBan__1B0907CE">
+      <End Role="Ban" EntitySet="Bans" />
+      <End Role="Lop" EntitySet="Lops" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GiaoVien__MaBM__164452B1" Association="Self.FK__GiaoVien__MaBM__164452B1">
+      <End Role="BoMon" EntitySet="BoMons" />
+      <End Role="GiaoVien" EntitySet="GiaoViens" />
+    </AssociationSet>
+    <EntitySet Name="Tiets" EntityType="XepThoiKhoaBieuModel.Tiet" />
+    <EntitySet Name="ThoiKhoaBieux" EntityType="XepThoiKhoaBieuModel.ThoiKhoaBieu" />
+    <AssociationSet Name="FK_ThoiKhoaBieu_GiaoVien" Association="XepThoiKhoaBieuModel.FK_ThoiKhoaBieu_GiaoVien">
+      <End Role="GiaoVien" EntitySet="GiaoViens" />
+      <End Role="ThoiKhoaBieu" EntitySet="ThoiKhoaBieux" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ThoiKhoaBieu_Lop" Association="XepThoiKhoaBieuModel.FK_ThoiKhoaBieu_Lop">
+      <End Role="Lop" EntitySet="Lops" />
+      <End Role="ThoiKhoaBieu" EntitySet="ThoiKhoaBieux" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ThoiKhoaBieu_MonHoc" Association="XepThoiKhoaBieuModel.FK_ThoiKhoaBieu_MonHoc">
+      <End Role="MonHoc" EntitySet="MonHocs" />
+      <End Role="ThoiKhoaBieu" EntitySet="ThoiKhoaBieux" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ThoiKhoaBieu_PhongHoc" Association="XepThoiKhoaBieuModel.FK_ThoiKhoaBieu_PhongHoc">
+      <End Role="PhongHoc" EntitySet="PhongHocs" />
+      <End Role="ThoiKhoaBieu" EntitySet="ThoiKhoaBieux" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ThoiKhoaBieu_Tiet" Association="XepThoiKhoaBieuModel.FK_ThoiKhoaBieu_Tiet">
+      <End Role="Tiet" EntitySet="Tiets" />
+      <End Role="ThoiKhoaBieu" EntitySet="ThoiKhoaBieux" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Tiet">
+    <Key>
+      <PropertyRef Name="STT" />
+    </Key>
+    <Property Name="STT" Type="Int32" Nullable="false" />
+    <Property Name="Tiet1" Type="Int32" />
+    <Property Name="Thu" Type="Int32" />
+    <Property Name="Time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ThoiKhoaBieux" Relationship="XepThoiKhoaBieuModel.FK_ThoiKhoaBieu_Tiet" FromRole="Tiet" ToRole="ThoiKhoaBieu" />
+  </EntityType>
+  <EntityType Name="ThoiKhoaBieu">
+    <Key>
+      <PropertyRef Name="MaPH" />
+      <PropertyRef Name="MaMH" />
+      <PropertyRef Name="MaLop" />
+      <PropertyRef Name="MaGV" />
+      <PropertyRef Name="Day" />
+    </Key>
+    <Property Name="MaPH" Type="Int32" Nullable="false" />
+    <Property Name="MaMH" Type="Int32" Nullable="false" />
+    <Property Name="MaLop" Type="Int32" Nullable="false" />
+    <Property Name="MaGV" Type="Int32" Nullable="false" />
+    <Property Name="Day" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="GiaoVien" Relationship="XepThoiKhoaBieuModel.FK_ThoiKhoaBieu_GiaoVien" FromRole="ThoiKhoaBieu" ToRole="GiaoVien" />
+    <NavigationProperty Name="Lop" Relationship="XepThoiKhoaBieuModel.FK_ThoiKhoaBieu_Lop" FromRole="ThoiKhoaBieu" ToRole="Lop" />
+    <NavigationProperty Name="MonHoc" Relationship="XepThoiKhoaBieuModel.FK_ThoiKhoaBieu_MonHoc" FromRole="ThoiKhoaBieu" ToRole="MonHoc" />
+    <NavigationProperty Name="PhongHoc" Relationship="XepThoiKhoaBieuModel.FK_ThoiKhoaBieu_PhongHoc" FromRole="ThoiKhoaBieu" ToRole="PhongHoc" />
+    <NavigationProperty Name="Tiet" Relationship="XepThoiKhoaBieuModel.FK_ThoiKhoaBieu_Tiet" FromRole="ThoiKhoaBieu" ToRole="Tiet" />
+  </EntityType>
+  <Association Name="FK_ThoiKhoaBieu_GiaoVien">
+    <End Type="XepThoiKhoaBieuModel.GiaoVien" Role="GiaoVien" Multiplicity="1" />
+    <End Type="XepThoiKhoaBieuModel.ThoiKhoaBieu" Role="ThoiKhoaBieu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GiaoVien">
+        <PropertyRef Name="MaGV" />
+      </Principal>
+      <Dependent Role="ThoiKhoaBieu">
+        <PropertyRef Name="MaGV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ThoiKhoaBieu_Lop">
+    <End Type="XepThoiKhoaBieuModel.Lop" Role="Lop" Multiplicity="1" />
+    <End Type="XepThoiKhoaBieuModel.ThoiKhoaBieu" Role="ThoiKhoaBieu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lop">
+        <PropertyRef Name="MaLop" />
+      </Principal>
+      <Dependent Role="ThoiKhoaBieu">
+        <PropertyRef Name="MaLop" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ThoiKhoaBieu_MonHoc">
+    <End Type="XepThoiKhoaBieuModel.MonHoc" Role="MonHoc" Multiplicity="1" />
+    <End Type="XepThoiKhoaBieuModel.ThoiKhoaBieu" Role="ThoiKhoaBieu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MonHoc">
+        <PropertyRef Name="MaMH" />
+      </Principal>
+      <Dependent Role="ThoiKhoaBieu">
+        <PropertyRef Name="MaMH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ThoiKhoaBieu_PhongHoc">
+    <End Type="XepThoiKhoaBieuModel.PhongHoc" Role="PhongHoc" Multiplicity="1" />
+    <End Type="XepThoiKhoaBieuModel.ThoiKhoaBieu" Role="ThoiKhoaBieu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PhongHoc">
+        <PropertyRef Name="MaPH" />
+      </Principal>
+      <Dependent Role="ThoiKhoaBieu">
+        <PropertyRef Name="MaPH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ThoiKhoaBieu_Tiet">
+    <End Type="XepThoiKhoaBieuModel.Tiet" Role="Tiet" Multiplicity="1" />
+    <End Type="XepThoiKhoaBieuModel.ThoiKhoaBieu" Role="ThoiKhoaBieu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tiet">
+        <PropertyRef Name="STT" />
+      </Principal>
+      <Dependent Role="ThoiKhoaBieu">
+        <PropertyRef Name="Day" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
