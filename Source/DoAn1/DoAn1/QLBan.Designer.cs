@@ -267,12 +267,12 @@
             this.Controls.Add(this.grdsBan);
             this.Controls.Add(this.grpThongTinBan);
             this.Controls.Add(this.groupBox2);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "QLBan";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "QLBan";
+            this.Text = "Quản Lý Ban";
             this.Load += new System.EventHandler(this.QLBan_Load);
             this.grdsBan.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBan)).EndInit();

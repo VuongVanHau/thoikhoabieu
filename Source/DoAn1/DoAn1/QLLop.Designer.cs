@@ -328,7 +328,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "QLLop";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "QLLop";
+            this.Text = "Quản Lý Lớp Học";
             this.Load += new System.EventHandler(this.QLLop_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvLop)).EndInit();
             this.groupBox2.ResumeLayout(false);

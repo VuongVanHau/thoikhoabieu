@@ -27,6 +27,7 @@ namespace DoAn1
     
         public virtual DbSet<Ban> Bans { get; set; }
         public virtual DbSet<BoMon> BoMons { get; set; }
+        public virtual DbSet<ChuNhiem> ChuNhiems { get; set; }
         public virtual DbSet<GiaoVien> GiaoViens { get; set; }
         public virtual DbSet<Lop> Lops { get; set; }
         public virtual DbSet<MonHoc> MonHocs { get; set; }

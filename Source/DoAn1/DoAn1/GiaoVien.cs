@@ -17,6 +17,7 @@ namespace DoAn1
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public GiaoVien()
         {
+            this.ChuNhiems = new HashSet<ChuNhiem>();
             this.ThoiKhoaBieux = new HashSet<ThoiKhoaBieu>();
         }
     
@@ -29,6 +30,8 @@ namespace DoAn1
         public Nullable<int> MaBM { get; set; }
     
         public virtual BoMon BoMon { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChuNhiem> ChuNhiems { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ThoiKhoaBieu> ThoiKhoaBieux { get; set; }
     }

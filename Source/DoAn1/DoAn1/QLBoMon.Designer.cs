@@ -266,10 +266,10 @@
             this.Controls.Add(this.grdsBoMon);
             this.Controls.Add(this.grpThongTinBM);
             this.Controls.Add(this.groupBox2);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "QLBoMon";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "QLBoMon";
+            this.Text = "Quản Lý Bộ Môn";
             this.Load += new System.EventHandler(this.QLBoMon_Load);
             this.grdsBoMon.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBoMon)).EndInit();

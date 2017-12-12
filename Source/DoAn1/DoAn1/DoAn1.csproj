@@ -60,6 +60,10 @@
     <Compile Include="BoMon.cs">
       <DependentUpon>DatabaseFirst.tt</DependentUpon>
     </Compile>
+    <Compile Include="Chon.cs" />
+    <Compile Include="ChuNhiem.cs">
+      <DependentUpon>DatabaseFirst.tt</DependentUpon>
+    </Compile>
     <Compile Include="DatabaseFirst.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -78,17 +82,21 @@
     <Compile Include="GiaoVien.cs">
       <DependentUpon>DatabaseFirst.tt</DependentUpon>
     </Compile>
-    <Compile Include="GiaoVien_MonHoc.cs" />
+    <Compile Include="GV_Lop.cs" />
+    <Compile Include="GV_MH.cs" />
     <Compile Include="Lop.cs">
       <DependentUpon>DatabaseFirst.tt</DependentUpon>
     </Compile>
+    <Compile Include="Lop_MH.cs" />
     <Compile Include="Lop_Phong.cs" />
+    <Compile Include="Lop_Tiet_MH.cs" />
     <Compile Include="MonHoc.cs">
       <DependentUpon>DatabaseFirst.tt</DependentUpon>
     </Compile>
     <Compile Include="PhongHoc.cs">
       <DependentUpon>DatabaseFirst.tt</DependentUpon>
     </Compile>
+    <Compile Include="RangBuocGV.cs" />
     <Compile Include="ThoiKhoaBieu.cs">
       <DependentUpon>DatabaseFirst.tt</DependentUpon>
     </Compile>
@@ -139,12 +147,19 @@
     <Compile Include="QLPhongHoc.Designer.cs">
       <DependentUpon>QLPhongHoc.cs</DependentUpon>
     </Compile>
+    <Compile Include="XemTKB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XemTKB.Designer.cs">
+      <DependentUpon>XemTKB.cs</DependentUpon>
+    </Compile>
     <Compile Include="XepThoiKhoaBieu.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="XepThoiKhoaBieu.Designer.cs">
       <DependentUpon>XepThoiKhoaBieu.cs</DependentUpon>
     </Compile>
+    <Compile Include="XThoiKhoaBieu.cs" />
     <EmbeddedResource Include="TongQL.resx">
       <DependentUpon>TongQL.cs</DependentUpon>
     </EmbeddedResource>
@@ -175,6 +190,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="QLPhongHoc.resx">
       <DependentUpon>QLPhongHoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XemTKB.resx">
+      <DependentUpon>XemTKB.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="XepThoiKhoaBieu.resx">
       <DependentUpon>XepThoiKhoaBieu.cs</DependentUpon>
@@ -228,6 +246,35 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

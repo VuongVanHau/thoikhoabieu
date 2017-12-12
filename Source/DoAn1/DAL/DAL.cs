@@ -20,7 +20,7 @@ namespace DALayer
         public string GetConnectionstring() //hàm xây dựng chuỗi kết nối
         {
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();//xây dựng chuỗi kết nối mới
-            builder.DataSource = "192.168.43.8"; //địa chỉ ip của máy chủ
+            builder.DataSource = "(local)"; //địa chỉ ip của máy chủ
             builder.InitialCatalog = "XepThoiKhoaBieu"; //tên Database
             builder.IntegratedSecurity = true;
             return builder.ConnectionString; //trả về chuỗi kết nối

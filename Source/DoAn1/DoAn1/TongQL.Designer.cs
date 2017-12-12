@@ -327,12 +327,12 @@
             this.Controls.Add(this.btnQLGV);
             this.Controls.Add(this.btnQLBM);
             this.Controls.Add(this.btnQLBan);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmTongQuanLy";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Quản Lý Trường Học";
+            this.Text = "Quản Lý Trường Học Ngô Gia Tự";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmTongQuanLy_FormClosing);
             this.Load += new System.EventHandler(this.frmTongQuanLy_Load);
             this.ResumeLayout(false);

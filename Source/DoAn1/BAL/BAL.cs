@@ -57,5 +57,27 @@ namespace BAL
             }
             return f;
         }
+        public bool ThemTKB(ref string err, int MaGV, int MaLop, int MaMH, int MaTiet, int MaPH )
+        {
+            bool f = false;
+            if (conn.State == ConnectionState.Open) conn.Close();
+            conn.Open();
+            comm.Parameters.Clear();
+            comm.CommandText = "insert into ThoiKhoaBieu value"+MaGV+","+MaLop + ","+MaMH + ","+MaTiet + "," + MaPH;
+            comm.CommandType = CommandType.Text;
+            try
+            {
+                f = MyExecuteNonQuery(comm.CommandText, comm.CommandType, ref err);
+            }
+            catch (SqlException ex)
+            {
+                err = ex.Message;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return f;
+        }
     }
 }

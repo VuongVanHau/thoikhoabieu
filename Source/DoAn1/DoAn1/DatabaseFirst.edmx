@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="XepThoiKhoaBieuModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="XepThoiKhoaBieuModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Ban">
           <Key>
             <PropertyRef Name="MaBan" />
@@ -18,6 +18,14 @@
           </Key>
           <Property Name="MaBM" Type="int" Nullable="false" />
           <Property Name="TenBM" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ChuNhiem">
+          <Key>
+            <PropertyRef Name="STT" />
+          </Key>
+          <Property Name="STT" Type="int" Nullable="false" />
+          <Property Name="MaLop" Type="int" Nullable="false" />
+          <Property Name="MaGV" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="GiaoVien">
           <Key>
@@ -103,6 +111,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ChuNhiem_GiaoVien">
+          <End Role="GiaoVien" Type="Self.GiaoVien" Multiplicity="1" />
+          <End Role="ChuNhiem" Type="Self.ChuNhiem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GiaoVien">
+              <PropertyRef Name="MaGV" />
+            </Principal>
+            <Dependent Role="ChuNhiem">
+              <PropertyRef Name="MaGV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChuNhiem_Lop">
+          <End Role="Lop" Type="Self.Lop" Multiplicity="1" />
+          <End Role="ChuNhiem" Type="Self.ChuNhiem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lop">
+              <PropertyRef Name="MaLop" />
+            </Principal>
+            <Dependent Role="ChuNhiem">
+              <PropertyRef Name="MaLop" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MonHoc_BoMon">
           <End Role="BoMon" Type="Self.BoMon" Multiplicity="0..1" />
           <End Role="MonHoc" Type="Self.MonHoc" Multiplicity="*" />
@@ -178,6 +210,7 @@
         <EntityContainer Name="XepThoiKhoaBieuModelStoreContainer">
           <EntitySet Name="Ban" EntityType="Self.Ban" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BoMon" EntityType="Self.BoMon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChuNhiem" EntityType="Self.ChuNhiem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GiaoVien" EntityType="Self.GiaoVien" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Lop" EntityType="Self.Lop" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MonHoc" EntityType="Self.MonHoc" Schema="dbo" store:Type="Tables" />
@@ -191,6 +224,14 @@
           <AssociationSet Name="FK__Lop__MaBan__1B0907CE" Association="Self.FK__Lop__MaBan__1B0907CE">
             <End Role="Ban" EntitySet="Ban" />
             <End Role="Lop" EntitySet="Lop" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChuNhiem_GiaoVien" Association="Self.FK_ChuNhiem_GiaoVien">
+            <End Role="GiaoVien" EntitySet="GiaoVien" />
+            <End Role="ChuNhiem" EntitySet="ChuNhiem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChuNhiem_Lop" Association="Self.FK_ChuNhiem_Lop">
+            <End Role="Lop" EntitySet="Lop" />
+            <End Role="ChuNhiem" EntitySet="ChuNhiem" />
           </AssociationSet>
           <AssociationSet Name="FK_MonHoc_BoMon" Association="Self.FK_MonHoc_BoMon">
             <End Role="BoMon" EntitySet="BoMon" />
@@ -217,7 +258,8 @@
             <End Role="ThoiKhoaBieu" EntitySet="ThoiKhoaBieu" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="XepThoiKhoaBieuModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -236,7 +278,17 @@
           <Property Name="MaBM" Type="Int32" Nullable="false" />
           <Property Name="TenBM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="GiaoViens" Relationship="Self.FK__GiaoVien__MaBM__164452B1" FromRole="BoMon" ToRole="GiaoVien" />
-          <NavigationProperty Name="MonHocs" Relationship="XepThoiKhoaBieuModel.FK_MonHoc_BoMon" FromRole="BoMon" ToRole="MonHoc" />
+          <NavigationProperty Name="MonHocs" Relationship="Self.FK_MonHoc_BoMon" FromRole="BoMon" ToRole="MonHoc" />
+        </EntityType>
+        <EntityType Name="ChuNhiem">
+          <Key>
+            <PropertyRef Name="STT" />
+          </Key>
+          <Property Name="STT" Type="Int32" Nullable="false" />
+          <Property Name="MaLop" Type="Int32" Nullable="false" />
+          <Property Name="MaGV" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GiaoVien" Relationship="Self.FK_ChuNhiem_GiaoVien" FromRole="ChuNhiem" ToRole="GiaoVien" />
+          <NavigationProperty Name="Lop" Relationship="Self.FK_ChuNhiem_Lop" FromRole="ChuNhiem" ToRole="Lop" />
         </EntityType>
         <EntityType Name="GiaoVien">
           <Key>
@@ -250,7 +302,8 @@
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="MaBM" Type="Int32" />
           <NavigationProperty Name="BoMon" Relationship="Self.FK__GiaoVien__MaBM__164452B1" FromRole="GiaoVien" ToRole="BoMon" />
-          <NavigationProperty Name="ThoiKhoaBieux" Relationship="XepThoiKhoaBieuModel.FK_ThoiKhoaBieu_GiaoVien" FromRole="GiaoVien" ToRole="ThoiKhoaBieu" />
+          <NavigationProperty Name="ChuNhiems" Relationship="Self.FK_ChuNhiem_GiaoVien" FromRole="GiaoVien" ToRole="ChuNhiem" />
+          <NavigationProperty Name="ThoiKhoaBieux" Relationship="Self.FK_ThoiKhoaBieu_GiaoVien" FromRole="GiaoVien" ToRole="ThoiKhoaBieu" />
         </EntityType>
         <EntityType Name="Lop">
           <Key>
@@ -261,8 +314,9 @@
           <Property Name="SoHocSinh" Type="Int32" />
           <Property Name="MaBan" Type="Int32" />
           <NavigationProperty Name="Ban" Relationship="Self.FK__Lop__MaBan__1B0907CE" FromRole="Lop" ToRole="Ban" />
-          <NavigationProperty Name="ThoiKhoaBieux" Relationship="XepThoiKhoaBieuModel.FK_ThoiKhoaBieu_Lop" FromRole="Lop" ToRole="ThoiKhoaBieu" />
-          </EntityType>
+          <NavigationProperty Name="ChuNhiems" Relationship="Self.FK_ChuNhiem_Lop" FromRole="Lop" ToRole="ChuNhiem" />
+          <NavigationProperty Name="ThoiKhoaBieux" Relationship="Self.FK_ThoiKhoaBieu_Lop" FromRole="Lop" ToRole="ThoiKhoaBieu" />
+        </EntityType>
         <EntityType Name="MonHoc">
           <Key>
             <PropertyRef Name="MaMH" />
@@ -270,8 +324,8 @@
           <Property Name="MaMH" Type="Int32" Nullable="false" />
           <Property Name="TenMH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MaBM" Type="Int32" />
-          <NavigationProperty Name="BoMon" Relationship="XepThoiKhoaBieuModel.FK_MonHoc_BoMon" FromRole="MonHoc" ToRole="BoMon" />
-          <NavigationProperty Name="ThoiKhoaBieux" Relationship="XepThoiKhoaBieuModel.FK_ThoiKhoaBieu_MonHoc" FromRole="MonHoc" ToRole="ThoiKhoaBieu" />
+          <NavigationProperty Name="BoMon" Relationship="Self.FK_MonHoc_BoMon" FromRole="MonHoc" ToRole="BoMon" />
+          <NavigationProperty Name="ThoiKhoaBieux" Relationship="Self.FK_ThoiKhoaBieu_MonHoc" FromRole="MonHoc" ToRole="ThoiKhoaBieu" />
         </EntityType>
         <EntityType Name="PhongHoc">
           <Key>
@@ -280,7 +334,36 @@
           <Property Name="MaPH" Type="Int32" Nullable="false" />
           <Property Name="TenPH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DungLuong" Type="Int32" />
-          <NavigationProperty Name="ThoiKhoaBieux" Relationship="XepThoiKhoaBieuModel.FK_ThoiKhoaBieu_PhongHoc" FromRole="PhongHoc" ToRole="ThoiKhoaBieu" />
+          <NavigationProperty Name="ThoiKhoaBieux" Relationship="Self.FK_ThoiKhoaBieu_PhongHoc" FromRole="PhongHoc" ToRole="ThoiKhoaBieu" />
+        </EntityType>
+        <EntityType Name="Tiet">
+          <Key>
+            <PropertyRef Name="STT" />
+          </Key>
+          <Property Name="STT" Type="Int32" Nullable="false" />
+          <Property Name="Tiet1" Type="Int32" />
+          <Property Name="Thu" Type="Int32" />
+          <Property Name="Time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ThoiKhoaBieux" Relationship="Self.FK_ThoiKhoaBieu_Tiet" FromRole="Tiet" ToRole="ThoiKhoaBieu" />
+        </EntityType>
+        <EntityType Name="ThoiKhoaBieu">
+          <Key>
+            <PropertyRef Name="MaPH" />
+            <PropertyRef Name="MaMH" />
+            <PropertyRef Name="MaLop" />
+            <PropertyRef Name="MaGV" />
+            <PropertyRef Name="MaTiet" />
+          </Key>
+          <Property Name="MaPH" Type="Int32" Nullable="false" />
+          <Property Name="MaMH" Type="Int32" Nullable="false" />
+          <Property Name="MaLop" Type="Int32" Nullable="false" />
+          <Property Name="MaGV" Type="Int32" Nullable="false" />
+          <Property Name="MaTiet" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GiaoVien" Relationship="Self.FK_ThoiKhoaBieu_GiaoVien" FromRole="ThoiKhoaBieu" ToRole="GiaoVien" />
+          <NavigationProperty Name="Lop" Relationship="Self.FK_ThoiKhoaBieu_Lop" FromRole="ThoiKhoaBieu" ToRole="Lop" />
+          <NavigationProperty Name="MonHoc" Relationship="Self.FK_ThoiKhoaBieu_MonHoc" FromRole="ThoiKhoaBieu" ToRole="MonHoc" />
+          <NavigationProperty Name="PhongHoc" Relationship="Self.FK_ThoiKhoaBieu_PhongHoc" FromRole="ThoiKhoaBieu" ToRole="PhongHoc" />
+          <NavigationProperty Name="Tiet" Relationship="Self.FK_ThoiKhoaBieu_Tiet" FromRole="ThoiKhoaBieu" ToRole="Tiet" />
         </EntityType>
         <Association Name="FK__Lop__MaBan__1B0907CE">
           <End Role="Ban" Type="Self.Ban" Multiplicity="0..1" />
@@ -306,61 +389,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="XepThoiKhoaBieuEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Bans" EntityType="Self.Ban" />
-          <EntitySet Name="BoMons" EntityType="Self.BoMon" />
-          <EntitySet Name="GiaoViens" EntityType="Self.GiaoVien" />
-          <EntitySet Name="Lops" EntityType="Self.Lop" />
-          <EntitySet Name="MonHocs" EntityType="Self.MonHoc" />
-          <EntitySet Name="PhongHocs" EntityType="Self.PhongHoc" />
-          <AssociationSet Name="FK__Lop__MaBan__1B0907CE" Association="Self.FK__Lop__MaBan__1B0907CE">
-            <End Role="Ban" EntitySet="Bans" />
-            <End Role="Lop" EntitySet="Lops" />
-          </AssociationSet>
-          <AssociationSet Name="FK__GiaoVien__MaBM__164452B1" Association="Self.FK__GiaoVien__MaBM__164452B1">
-            <End Role="BoMon" EntitySet="BoMons" />
-            <End Role="GiaoVien" EntitySet="GiaoViens" />
-          </AssociationSet>
-          <EntitySet Name="Tiets" EntityType="XepThoiKhoaBieuModel.Tiet" />
-          <AssociationSet Name="FK_MonHoc_BoMon" Association="XepThoiKhoaBieuModel.FK_MonHoc_BoMon">
-            <End Role="BoMon" EntitySet="BoMons" />
-            <End Role="MonHoc" EntitySet="MonHocs" />
-          </AssociationSet>
-          <EntitySet Name="ThoiKhoaBieux" EntityType="XepThoiKhoaBieuModel.ThoiKhoaBieu" />
-          <AssociationSet Name="FK_ThoiKhoaBieu_GiaoVien" Association="XepThoiKhoaBieuModel.FK_ThoiKhoaBieu_GiaoVien">
-            <End Role="GiaoVien" EntitySet="GiaoViens" />
-            <End Role="ThoiKhoaBieu" EntitySet="ThoiKhoaBieux" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ThoiKhoaBieu_Lop" Association="XepThoiKhoaBieuModel.FK_ThoiKhoaBieu_Lop">
-            <End Role="Lop" EntitySet="Lops" />
-            <End Role="ThoiKhoaBieu" EntitySet="ThoiKhoaBieux" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ThoiKhoaBieu_MonHoc" Association="XepThoiKhoaBieuModel.FK_ThoiKhoaBieu_MonHoc">
-            <End Role="MonHoc" EntitySet="MonHocs" />
-            <End Role="ThoiKhoaBieu" EntitySet="ThoiKhoaBieux" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ThoiKhoaBieu_PhongHoc" Association="XepThoiKhoaBieuModel.FK_ThoiKhoaBieu_PhongHoc">
-            <End Role="PhongHoc" EntitySet="PhongHocs" />
-            <End Role="ThoiKhoaBieu" EntitySet="ThoiKhoaBieux" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ThoiKhoaBieu_Tiet" Association="XepThoiKhoaBieuModel.FK_ThoiKhoaBieu_Tiet">
-            <End Role="Tiet" EntitySet="Tiets" />
-            <End Role="ThoiKhoaBieu" EntitySet="ThoiKhoaBieux" />
-          </AssociationSet>
-          </EntityContainer>
-        <EntityType Name="Tiet">
-          <Key>
-            <PropertyRef Name="STT" />
-          </Key>
-          <Property Name="STT" Type="Int32" Nullable="false" />
-          <Property Name="Tiet1" Type="Int32" />
-          <Property Name="Thu" Type="Int32" />
-          <Property Name="Time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ThoiKhoaBieux" Relationship="XepThoiKhoaBieuModel.FK_ThoiKhoaBieu_Tiet" FromRole="Tiet" ToRole="ThoiKhoaBieu" />
-          </EntityType>
         <Association Name="FK_MonHoc_BoMon">
-          <End Type="XepThoiKhoaBieuModel.BoMon" Role="BoMon" Multiplicity="0..1" />
-          <End Type="XepThoiKhoaBieuModel.MonHoc" Role="MonHoc" Multiplicity="*" />
+          <End Role="BoMon" Type="Self.BoMon" Multiplicity="0..1" />
+          <End Role="MonHoc" Type="Self.MonHoc" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BoMon">
               <PropertyRef Name="MaBM" />
@@ -370,28 +401,33 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="ThoiKhoaBieu">
-          <Key>
-            <PropertyRef Name="MaPH" />
-            <PropertyRef Name="MaMH" />
-            <PropertyRef Name="MaLop" />
-            <PropertyRef Name="MaGV" />
-            <PropertyRef Name="MaTiet" />
-          </Key>
-          <Property Name="MaPH" Type="Int32" Nullable="false" />
-          <Property Name="MaMH" Type="Int32" Nullable="false" />
-          <Property Name="MaLop" Type="Int32" Nullable="false" />
-          <Property Name="MaGV" Type="Int32" Nullable="false" />
-          <Property Name="MaTiet" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="GiaoVien" Relationship="XepThoiKhoaBieuModel.FK_ThoiKhoaBieu_GiaoVien" FromRole="ThoiKhoaBieu" ToRole="GiaoVien" />
-          <NavigationProperty Name="Lop" Relationship="XepThoiKhoaBieuModel.FK_ThoiKhoaBieu_Lop" FromRole="ThoiKhoaBieu" ToRole="Lop" />
-          <NavigationProperty Name="MonHoc" Relationship="XepThoiKhoaBieuModel.FK_ThoiKhoaBieu_MonHoc" FromRole="ThoiKhoaBieu" ToRole="MonHoc" />
-          <NavigationProperty Name="PhongHoc" Relationship="XepThoiKhoaBieuModel.FK_ThoiKhoaBieu_PhongHoc" FromRole="ThoiKhoaBieu" ToRole="PhongHoc" />
-          <NavigationProperty Name="Tiet" Relationship="XepThoiKhoaBieuModel.FK_ThoiKhoaBieu_Tiet" FromRole="ThoiKhoaBieu" ToRole="Tiet" />
-        </EntityType>
+        <Association Name="FK_ChuNhiem_GiaoVien">
+          <End Role="GiaoVien" Type="Self.GiaoVien" Multiplicity="1" />
+          <End Role="ChuNhiem" Type="Self.ChuNhiem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GiaoVien">
+              <PropertyRef Name="MaGV" />
+            </Principal>
+            <Dependent Role="ChuNhiem">
+              <PropertyRef Name="MaGV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChuNhiem_Lop">
+          <End Role="Lop" Type="Self.Lop" Multiplicity="1" />
+          <End Role="ChuNhiem" Type="Self.ChuNhiem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lop">
+              <PropertyRef Name="MaLop" />
+            </Principal>
+            <Dependent Role="ChuNhiem">
+              <PropertyRef Name="MaLop" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ThoiKhoaBieu_GiaoVien">
-          <End Type="XepThoiKhoaBieuModel.GiaoVien" Role="GiaoVien" Multiplicity="1" />
-          <End Type="XepThoiKhoaBieuModel.ThoiKhoaBieu" Role="ThoiKhoaBieu" Multiplicity="*" />
+          <End Role="GiaoVien" Type="Self.GiaoVien" Multiplicity="1" />
+          <End Role="ThoiKhoaBieu" Type="Self.ThoiKhoaBieu" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="GiaoVien">
               <PropertyRef Name="MaGV" />
@@ -402,8 +438,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ThoiKhoaBieu_Lop">
-          <End Type="XepThoiKhoaBieuModel.Lop" Role="Lop" Multiplicity="1" />
-          <End Type="XepThoiKhoaBieuModel.ThoiKhoaBieu" Role="ThoiKhoaBieu" Multiplicity="*" />
+          <End Role="Lop" Type="Self.Lop" Multiplicity="1" />
+          <End Role="ThoiKhoaBieu" Type="Self.ThoiKhoaBieu" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Lop">
               <PropertyRef Name="MaLop" />
@@ -414,8 +450,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ThoiKhoaBieu_MonHoc">
-          <End Type="XepThoiKhoaBieuModel.MonHoc" Role="MonHoc" Multiplicity="1" />
-          <End Type="XepThoiKhoaBieuModel.ThoiKhoaBieu" Role="ThoiKhoaBieu" Multiplicity="*" />
+          <End Role="MonHoc" Type="Self.MonHoc" Multiplicity="1" />
+          <End Role="ThoiKhoaBieu" Type="Self.ThoiKhoaBieu" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MonHoc">
               <PropertyRef Name="MaMH" />
@@ -426,8 +462,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ThoiKhoaBieu_PhongHoc">
-          <End Type="XepThoiKhoaBieuModel.PhongHoc" Role="PhongHoc" Multiplicity="1" />
-          <End Type="XepThoiKhoaBieuModel.ThoiKhoaBieu" Role="ThoiKhoaBieu" Multiplicity="*" />
+          <End Role="PhongHoc" Type="Self.PhongHoc" Multiplicity="1" />
+          <End Role="ThoiKhoaBieu" Type="Self.ThoiKhoaBieu" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PhongHoc">
               <PropertyRef Name="MaPH" />
@@ -438,8 +474,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ThoiKhoaBieu_Tiet">
-          <End Type="XepThoiKhoaBieuModel.Tiet" Role="Tiet" Multiplicity="1" />
-          <End Type="XepThoiKhoaBieuModel.ThoiKhoaBieu" Role="ThoiKhoaBieu" Multiplicity="*" />
+          <End Role="Tiet" Type="Self.Tiet" Multiplicity="1" />
+          <End Role="ThoiKhoaBieu" Type="Self.ThoiKhoaBieu" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tiet">
               <PropertyRef Name="STT" />
@@ -449,7 +485,58 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        </Schema>
+        <EntityContainer Name="XepThoiKhoaBieuEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bans" EntityType="Self.Ban" />
+          <EntitySet Name="BoMons" EntityType="Self.BoMon" />
+          <EntitySet Name="ChuNhiems" EntityType="Self.ChuNhiem" />
+          <EntitySet Name="GiaoViens" EntityType="Self.GiaoVien" />
+          <EntitySet Name="Lops" EntityType="Self.Lop" />
+          <EntitySet Name="MonHocs" EntityType="Self.MonHoc" />
+          <EntitySet Name="PhongHocs" EntityType="Self.PhongHoc" />
+          <EntitySet Name="Tiets" EntityType="Self.Tiet" />
+          <EntitySet Name="ThoiKhoaBieux" EntityType="Self.ThoiKhoaBieu" />
+          <AssociationSet Name="FK__Lop__MaBan__1B0907CE" Association="Self.FK__Lop__MaBan__1B0907CE">
+            <End Role="Ban" EntitySet="Bans" />
+            <End Role="Lop" EntitySet="Lops" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GiaoVien__MaBM__164452B1" Association="Self.FK__GiaoVien__MaBM__164452B1">
+            <End Role="BoMon" EntitySet="BoMons" />
+            <End Role="GiaoVien" EntitySet="GiaoViens" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MonHoc_BoMon" Association="Self.FK_MonHoc_BoMon">
+            <End Role="BoMon" EntitySet="BoMons" />
+            <End Role="MonHoc" EntitySet="MonHocs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChuNhiem_GiaoVien" Association="Self.FK_ChuNhiem_GiaoVien">
+            <End Role="GiaoVien" EntitySet="GiaoViens" />
+            <End Role="ChuNhiem" EntitySet="ChuNhiems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChuNhiem_Lop" Association="Self.FK_ChuNhiem_Lop">
+            <End Role="Lop" EntitySet="Lops" />
+            <End Role="ChuNhiem" EntitySet="ChuNhiems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThoiKhoaBieu_GiaoVien" Association="Self.FK_ThoiKhoaBieu_GiaoVien">
+            <End Role="GiaoVien" EntitySet="GiaoViens" />
+            <End Role="ThoiKhoaBieu" EntitySet="ThoiKhoaBieux" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThoiKhoaBieu_Lop" Association="Self.FK_ThoiKhoaBieu_Lop">
+            <End Role="Lop" EntitySet="Lops" />
+            <End Role="ThoiKhoaBieu" EntitySet="ThoiKhoaBieux" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThoiKhoaBieu_MonHoc" Association="Self.FK_ThoiKhoaBieu_MonHoc">
+            <End Role="MonHoc" EntitySet="MonHocs" />
+            <End Role="ThoiKhoaBieu" EntitySet="ThoiKhoaBieux" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThoiKhoaBieu_PhongHoc" Association="Self.FK_ThoiKhoaBieu_PhongHoc">
+            <End Role="PhongHoc" EntitySet="PhongHocs" />
+            <End Role="ThoiKhoaBieu" EntitySet="ThoiKhoaBieux" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThoiKhoaBieu_Tiet" Association="Self.FK_ThoiKhoaBieu_Tiet">
+            <End Role="Tiet" EntitySet="Tiets" />
+            <End Role="ThoiKhoaBieu" EntitySet="ThoiKhoaBieux" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -468,6 +555,15 @@
               <MappingFragment StoreEntitySet="BoMon">
                 <ScalarProperty Name="MaBM" ColumnName="MaBM" />
                 <ScalarProperty Name="TenBM" ColumnName="TenBM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChuNhiems">
+            <EntityTypeMapping TypeName="XepThoiKhoaBieuModel.ChuNhiem">
+              <MappingFragment StoreEntitySet="ChuNhiem">
+                <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="MaLop" ColumnName="MaLop" />
+                <ScalarProperty Name="MaGV" ColumnName="MaGV" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -497,9 +593,9 @@
           <EntitySetMapping Name="MonHocs">
             <EntityTypeMapping TypeName="XepThoiKhoaBieuModel.MonHoc">
               <MappingFragment StoreEntitySet="MonHoc">
-                <ScalarProperty Name="MaBM" ColumnName="MaBM" />
                 <ScalarProperty Name="MaMH" ColumnName="MaMH" />
                 <ScalarProperty Name="TenMH" ColumnName="TenMH" />
+                <ScalarProperty Name="MaBM" ColumnName="MaBM" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -515,21 +611,21 @@
           <EntitySetMapping Name="Tiets">
             <EntityTypeMapping TypeName="XepThoiKhoaBieuModel.Tiet">
               <MappingFragment StoreEntitySet="Tiet">
-                <ScalarProperty Name="Time" ColumnName="Time" />
-                <ScalarProperty Name="Thu" ColumnName="Thu" />
-                <ScalarProperty Name="Tiet1" ColumnName="Tiet" />
                 <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="Tiet1" ColumnName="Tiet" />
+                <ScalarProperty Name="Thu" ColumnName="Thu" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ThoiKhoaBieux">
             <EntityTypeMapping TypeName="XepThoiKhoaBieuModel.ThoiKhoaBieu">
               <MappingFragment StoreEntitySet="ThoiKhoaBieu">
-                <ScalarProperty Name="MaTiet" ColumnName="MaTiet" />
-                <ScalarProperty Name="MaGV" ColumnName="MaGV" />
-                <ScalarProperty Name="MaLop" ColumnName="MaLop" />
-                <ScalarProperty Name="MaMH" ColumnName="MaMH" />
                 <ScalarProperty Name="MaPH" ColumnName="MaPH" />
+                <ScalarProperty Name="MaMH" ColumnName="MaMH" />
+                <ScalarProperty Name="MaLop" ColumnName="MaLop" />
+                <ScalarProperty Name="MaGV" ColumnName="MaGV" />
+                <ScalarProperty Name="MaTiet" ColumnName="MaTiet" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

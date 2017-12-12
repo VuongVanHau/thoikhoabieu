@@ -69,7 +69,9 @@ namespace DoAn1
 
         private void btnXemTKB_Click(object sender, EventArgs e)
         {
-
+            this.Dispose();
+            XemTKB tkb = new XemTKB();
+            tkb.ShowDialog();
         }
 
         private void timer1_Tick(object sender, EventArgs e)

@@ -445,7 +445,7 @@
             this.MinimizeBox = false;
             this.Name = "QLGiaoVien";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "QLGiaoVien";
+            this.Text = "Quản Lý Giáo Viên";
             this.Load += new System.EventHandler(this.QLGiaoVien_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

@@ -297,12 +297,12 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.grdsPhongHoc);
             this.Controls.Add(this.grpThongTinPH);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "QLPhongHoc";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "QLPhongHoc";
+            this.Text = "Quản Lý Phòng Học";
             this.Load += new System.EventHandler(this.QLPhongHoc_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

@@ -17,6 +17,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="ChuNhiems">
+      <EntityTypeMapping TypeName="XepThoiKhoaBieuModel.ChuNhiem">
+        <MappingFragment StoreEntitySet="ChuNhiem">
+          <ScalarProperty Name="STT" ColumnName="STT" />
+          <ScalarProperty Name="MaLop" ColumnName="MaLop" />
+          <ScalarProperty Name="MaGV" ColumnName="MaGV" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="GiaoViens">
       <EntityTypeMapping TypeName="XepThoiKhoaBieuModel.GiaoVien">
         <MappingFragment StoreEntitySet="GiaoVien">
@@ -45,6 +54,7 @@
         <MappingFragment StoreEntitySet="MonHoc">
           <ScalarProperty Name="MaMH" ColumnName="MaMH" />
           <ScalarProperty Name="TenMH" ColumnName="TenMH" />
+          <ScalarProperty Name="MaBM" ColumnName="MaBM" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -60,21 +70,21 @@
     <EntitySetMapping Name="Tiets">
       <EntityTypeMapping TypeName="XepThoiKhoaBieuModel.Tiet">
         <MappingFragment StoreEntitySet="Tiet">
-          <ScalarProperty Name="Time" ColumnName="Time" />
-          <ScalarProperty Name="Thu" ColumnName="Thu" />
-          <ScalarProperty Name="Tiet1" ColumnName="Tiet" />
           <ScalarProperty Name="STT" ColumnName="STT" />
+          <ScalarProperty Name="Tiet1" ColumnName="Tiet" />
+          <ScalarProperty Name="Thu" ColumnName="Thu" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ThoiKhoaBieux">
       <EntityTypeMapping TypeName="XepThoiKhoaBieuModel.ThoiKhoaBieu">
         <MappingFragment StoreEntitySet="ThoiKhoaBieu">
-          <ScalarProperty Name="Day" ColumnName="Day" />
-          <ScalarProperty Name="MaGV" ColumnName="MaGV" />
-          <ScalarProperty Name="MaLop" ColumnName="MaLop" />
-          <ScalarProperty Name="MaMH" ColumnName="MaMH" />
           <ScalarProperty Name="MaPH" ColumnName="MaPH" />
+          <ScalarProperty Name="MaMH" ColumnName="MaMH" />
+          <ScalarProperty Name="MaLop" ColumnName="MaLop" />
+          <ScalarProperty Name="MaGV" ColumnName="MaGV" />
+          <ScalarProperty Name="MaTiet" ColumnName="MaTiet" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

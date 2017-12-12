@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace DoAn1
 {
-    public partial class  Lop_Phong
+    public partial class Lop_Tiet_MH
     {
         public int stt { get; set; }
         public int MaLop { get; set; }
-        public int MaPH { get; set; }
-        public string Buoi { get; set; }
+        public int MaMH { get; set; }
+        public int MaTiet { get; set; }
     }
 }
